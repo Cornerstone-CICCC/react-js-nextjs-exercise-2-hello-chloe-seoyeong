@@ -4,7 +4,8 @@ import Link from "next/link";
 type Props = {
   params: Promise<{ id: string }>;
 };
-export const page = async ({ params }: Props) => {
+
+export const Page = async ({ params }: Props) => {
   const { id } = await params;
   const res = await fetch(`http://localhost:3000/api/users/${id}`);
   const data: User = await res.json();
@@ -16,16 +17,13 @@ export const page = async ({ params }: Props) => {
         <p>
           {data.firstName} {data.lastName}
         </p>
-        <Link href="/users">&larr; Back to Users list</Link>
-        <a
-          href={`/users/${data.id}`}
-          className="border-1 px-2 mt-1 inline-block rounded-md shadow-md"
-        >
-          View User Detail
-        </a>
+        <div className="flex gap-4 justify-between border-t-2 py-3 my-3">
+          <Link href="/users">&larr; Back to User List</Link>
+          <a href={`/users/${data.id}`}>View User Detail &rarr;</a>
+        </div>
       </div>
     </div>
   );
 };
 
-export default page;
+export default Page;
