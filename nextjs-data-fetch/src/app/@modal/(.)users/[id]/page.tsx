@@ -1,5 +1,4 @@
 import { User } from "@/app/users/page";
-import Link from "next/link";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -18,7 +17,7 @@ export const Page = async ({ params }: Props) => {
           {data.firstName} {data.lastName}
         </p>
         <div className="flex gap-4 justify-between border-t-2 py-3 my-3">
-          <Link href="/users">&larr; Back to User List</Link>
+          <a href="/users">&larr; Back to User List</a>
           <a href={`/users/${data.id}`}>View User Detail &rarr;</a>
         </div>
       </div>
